@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="generator" content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+    <meta charset="gb2312">
+    <title>求和计算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="jquery.mobile-1.3.2.min.css" type="text/css">
+    <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="jquery.mobile-1.3.2.min.js" type="text/javascript"></script>
+    <script>
+        //计算部分用到的函数
+        function calculate()
+        {            
+            var number1, number2, result;
+            
+            number1=document.getElementById("number1").value;
+            number2=document.getElementById("number2").value;
+            
+            //判断输入的是不是数字, 如果不是数字则提示重新输入, 如果是数字则进行正常计算.
+            if(isNaN(number1) || isNaN(number2))
+            {
+                alert("你输入的不是数字, 请输入数字进行计算.");
+            }
+            else
+            {
+                number1=Math.abs(document.getElementById("number1").value);
+                number2=Math.abs(document.getElementById("number2").value);
+                result=number1+number2;
+                
+                document.getElementById("result").innerHTML=result;
+            }  
+        }
+        
+        //主题修改部分用到的函数
+        function themeNight()
+        {
+            document.getElementById("contentArea").style.backgroundColor="black";
+            document.getElementById("contentArea").style.color="white";
+        }
+        
+        function themeBlue()
+        {
+            document.getElementById("contentArea").style.backgroundColor="blue";        
+        }
+        
+        function themeYellow()
+        {
+            document.getElementById("contentArea").style.backgroundColor="yellow";        
+        }
+        
+        function themeDay()
+        {
+            document.getElementById("contentArea").style.backgroundColor="white";        
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" id="mainPage" data-theme="c">
+        <!-- 使用界面顶部 -->
+        <div data-role="header">
+            <!-- 页面标题 -->
+            <h1>求和计算器</h1>
+        </div>
+        
+        <!-- 使用界面主要内容部分 -->
+        <div data-role="content" id="contentArea">        
+            <!-- 操作过程显示区域 -->
+            <div id="calculationDisplayingArea" align="center">
+                <form method="get" action="#">
+                <!-- 用表格实现输入显示表达式的显示 -->
+                <div data-role="fieldcontain">
+                <table>
+                    <tr>
+                      <!-- 加数1 -->
+                      <td>
+                        <input type="text" name="number1" id="number1">
+                      </td>
+                      <!-- 加号 -->
+                      <td>
+                        <p>+</p>
+                      </td>
+                      <!-- 加数2 -->
+                      <td>
+                        <input type="text" name="number2" id="number2">
+                      </td>
+                      <!-- 等号 -->
+                      <td>
+                        <p>=</p>
+                      </td>
+                      <!-- 结果 -->
+                      <td>
+                        <p id="result" style="font-size: 1.5em;"></p>
+                      </td>
+                    </tr>
+                </table>
+                </div>
+              </form>
+              <button id="calculate" data-inline="true" onclick="calculate()">计算</button>
+            </div>
+            
+            <!-- 操作界面显示区域 -->
+            <div id="operationDisplayingArea" align="center">
+                <form method="get" action="#">
+                <!-- 用表格实现输入显示表达式的显示 -->
+                <div data-role="fieldcontain">
+                    <table style="text-align: center; font-size: 2em;">
+                        <tr>
+                            <td>
+                                <button>1</button>
+                            </td>
+                            <td>
+                                <button>2</button>
+                            </td> 
+                            <td>
+                                <button>3</button>
+                            </td>                             
+                        </tr>
+                       <tr>
+                            <td>
+                                <button>4</button>
+                            </td>
+                            <td>
+                                <button>5</button>
+                            </td> 
+                            <td>
+                                <button>6</button>
+                            </td>                             
+                        </tr><tr>
+                            <td>
+                                <button>7</button>
+                            </td>
+                            <td>
+                                <button>8</button>
+                            </td> 
+                            <td>
+                                <button>9</button>
+                            </td>                             
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            </div>
+            
+            <!-- 历史记录显示区域 -->
+            <div id="historyDisplayingArea" align="center">
+                <p  style="border: 1px solid black; width: 300px; text-align: left;">这块区域计划用来显示用户最近5次的计算结果, 时间有限, 不能够代码实现. <br /><br /><strong>思路是:</strong> 将每一次的加数1, 加数2, 结果都保存成字符串, 存放在本地文件中, 每做一次计算就新加入一个计算记录, 并删除最靠前的计算记录</p>
+            </div>
+        </div>
+        
+        <!-- 使用界面底部 -->
+        <div data-role="footer" class="ui-btn">
+            <div data-role="footer" class="ui-btn">
+                <!-- 按钮可以选择主题 -->
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#" data-role="button" data-theme="a" id="theme1" onclick="themeNight()">夜晚</a>
+                    <a href="#" data-role="button" data-theme="b" id="theme2" onclick="themeBlue()">忧郁蓝</a>
+                    <a href="#" data-role="button" data-theme="e" id="theme3" onclick="themeYellow()">动感黄</a>
+                    <a href="#" data-role="button" data-theme="c" id="theme4" onclick="themeDay()">白天</a>
+                </div>
+            </div>
+            <p id="version" style="text-align: right; position: a; float: right;">Version: v0.1</p>
+        </div>
+    </div>
+</body>
+</html>
