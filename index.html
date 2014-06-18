@@ -28,26 +28,26 @@
                 number2=Math.abs(document.getElementById("number2").value);
                 result=number1+number2;
                 
-                document.getElementById("result").innerHTML=result;
+                document.getElementById("result").value=result;
             }  
         }
         
         //主题修改部分用到的函数
         function themeNight()
         {
-            document.getElementById("contentArea").style.backgroundColor="black";
+            document.getElementById("contentArea").style.backgroundColor="#595959";
             document.getElementById("contentArea").style.color="white";
         }
         
         function themeBlue()
         {
-            document.getElementById("contentArea").style.backgroundColor="blue";        
+            document.getElementById("contentArea").style.backgroundColor="#66CCFF";        
             document.getElementById("contentArea").style.color="black";
         }
         
         function themeYellow()
         {
-            document.getElementById("contentArea").style.backgroundColor="yellow";     
+            document.getElementById("contentArea").style.backgroundColor="#feffb1";     
             document.getElementById("contentArea").style.color="black";
         }
         
@@ -61,15 +61,15 @@
 <body>
     <div data-role="page" id="mainPage" data-theme="c">
         <!-- 使用界面顶部 -->
-        <div data-role="header">
+        <div data-role="header" data-position="fixed" data-fullscreen="true">
             <!-- 页面标题 -->
             <h1>求和计算器</h1>
         </div>
         
         <!-- 使用界面主要内容部分 -->
-        <div data-role="content" id="contentArea">        
+        <div data-role="content" id="contentArea" style="padding: 0;">        
             <!-- 操作过程显示区域 -->
-            <div id="calculationDisplayingArea" align="center">
+            <div id="calculationDisplayingArea" align="center" style="padding-top: 42px;">
                 <form method="get" action="#">
                 <!-- 用表格实现输入显示表达式的显示 -->
                 <div data-role="fieldcontain">
@@ -77,7 +77,7 @@
                     <tr>
                       <!-- 加数1 -->
                       <td>
-                        <input type="text" name="number1" id="number1">
+                        <input type="text" name="number1" id="number1" placeholder="数字1">
                       </td>
                       <!-- 加号 -->
                       <td>
@@ -85,7 +85,7 @@
                       </td>
                       <!-- 加数2 -->
                       <td>
-                        <input type="text" name="number2" id="number2">
+                        <input type="text" name="number2" id="number2" placeholder="数字2">
                       </td>
                       <!-- 等号 -->
                       <td>
@@ -93,7 +93,7 @@
                       </td>
                       <!-- 结果 -->
                       <td>
-                        <p id="result" style="font-size: 1.5em;"></p>
+                        <input type="text" name="result" id="result" placeholder="结果">
                       </td>
                     </tr>
                 </table>
@@ -104,7 +104,7 @@
             
             <!-- 操作界面显示区域 -->
             <div id="operationDisplayingArea" align="center">
-                <form method="get" action="#">
+            <form method="get" action="#">
                 <!-- 用表格实现输入显示表达式的显示 -->
                 <div data-role="fieldcontain">
                     <table style="text-align: center; font-size: 2em;">
@@ -129,7 +129,8 @@
                             <td>
                                 <button>6</button>
                             </td>                             
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>
                                 <button>7</button>
                             </td>
@@ -149,21 +150,20 @@
             <div id="historyDisplayingArea" align="center">
                 <p  style="border: 1px solid black; width: 300px; text-align: left;">这块区域计划用来显示用户最近5次的计算结果, 时间有限, 不能够代码实现. <br /><br /><strong>思路是:</strong> 将每一次的加数1, 加数2, 结果都保存成字符串, 存放在本地文件中, 每做一次计算就新加入一个计算记录, 并删除最靠前的计算记录</p>
             </div>
+            <p style="float: right;">Version: v0.1</p>
         </div>
         
         <!-- 使用界面底部 -->
-        <div data-role="footer" class="ui-btn">
-            <div data-role="footer" class="ui-btn">
-                <!-- 按钮可以选择主题 -->
-                <div data-role="controlgroup" data-type="horizontal">
-                    <a href="#" data-role="button" data-theme="a" id="theme1" onclick="themeNight()">夜晚</a>
-                    <a href="#" data-role="button" data-theme="b" id="theme2" onclick="themeBlue()">忧郁蓝</a>
-                    <a href="#" data-role="button" data-theme="e" id="theme3" onclick="themeYellow()">动感黄</a>
-                    <a href="#" data-role="button" data-theme="c" id="theme4" onclick="themeDay()">白天</a>
-                </div>
-            </div>
-            <p id="version" style="text-align: right; position: a; float: right;">Version: v0.1</p>
+        <div data-role="footer"  data-position="fixed" data-fullscreen="true" class="ui-btn" style="padding: 0; margin: 0;">
+            <!-- 按钮可以选择主题 -->
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="#" data-role="button" data-theme="a" id="theme1" onclick="themeNight()">夜晚</a>
+                <a href="#" data-role="button" data-theme="b" id="theme2" onclick="themeBlue()">忧郁蓝</a>
+                <a href="#" data-role="button" data-theme="e" id="theme3" onclick="themeYellow()">动感黄</a>
+                <a href="#" data-role="button" data-theme="c" id="theme4" onclick="themeDay()">白天</a>
+            </div>            
         </div>
+        
     </div>
 </body>
 </html>
